@@ -1,6 +1,6 @@
 {
   "name": "@aztack/tsquery",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "Query TypeScript ASTs with the esquery API!",
   "bin": {
     "tsquery": "./bin/tsquery"
@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "npm run clean && npm run compile && npm run lint && npm run test",
+    "build": "npm run clean && npm run compile",
     "build-no-lint-no-test": "npm run clean && npm run compile",
     "clean": "rimraf dist",
     "compile": "tsc",
@@ -29,7 +29,8 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "esquery": "^1.0.1"
+    "esquery": "^1.0.1",
+    "glob": "^7.1.7"
   },
   "peerDependencies": {
     "typescript": "^3 || ^4"
