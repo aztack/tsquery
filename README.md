@@ -1,8 +1,8 @@
 # TSQuery
 
-[![npm version](https://img.shields.io/npm/v/@phenomnomnominal/tsquery.svg)](https://img.shields.io/npm/v/@phenomnomnominal/tsquery.svg)
-[![Code Climate](https://codeclimate.com/github/phenomnomnominal/tsquery/badges/gpa.svg)](https://codeclimate.com/github/phenomnomnominal/tsquery)
-[![Test Coverage](https://codeclimate.com/github/phenomnomnominal/tsquery/coverage.svg)](https://codeclimate.com/github/phenomnomnominal/tsquery/coverage)
+[![npm version](https://img.shields.io/npm/v/@aztack/tsquery.svg)](https://img.shields.io/npm/v/@aztack/tsquery.svg)
+[![Code Climate](https://codeclimate.com/github/aztack/tsquery/badges/gpa.svg)](https://codeclimate.com/github/aztack/tsquery)
+[![Test Coverage](https://codeclimate.com/github/aztack/tsquery/coverage.svg)](https://codeclimate.com/github/aztack/tsquery/coverage)
 
 TSQuery is a port of the ESQuery API for TypeScript! TSQuery allows you to query a TypeScript AST for patterns of syntax using a CSS style selector system. 
 
@@ -13,7 +13,7 @@ TSQuery is a port of the ESQuery API for TypeScript! TSQuery allows you to query
 ## Installation
 
 ```sh
-npm install @phenomnomnominal/tsquery --save-dev
+npm install @aztack/tsquery --save-dev
 ```
 
 ## Examples
@@ -23,7 +23,7 @@ Say we want to select all instances of an identifier with name "Animal", e.g. th
 We would do something like the following:
 
 ```ts
-import { tsquery } from '@phenomnomnominal/tsquery';
+import { tsquery } from '@aztack/tsquery';
 
 const typescript = `
 

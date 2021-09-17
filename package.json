@@ -1,17 +1,21 @@
 {
-  "name": "@phenomnomnominal/tsquery",
-  "version": "4.1.0",
+  "name": "@aztack/tsquery",
+  "version": "4.1.1",
   "description": "Query TypeScript ASTs with the esquery API!",
+  "bin": {
+    "tsquery": "./bin/tsquery"
+  },
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
-  "author": "Craig Spence <craigspence0@gmail.com>",
+  "author": "Aztack <aztack@163.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/phenomnomnominal/tsquery"
+    "url": "https://github.com/aztack/tsquery"
   },
   "license": "MIT",
   "scripts": {
     "build": "npm run clean && npm run compile && npm run lint && npm run test",
+    "build-no-lint-no-test": "npm run clean && npm run compile",
     "clean": "rimraf dist",
     "compile": "tsc",
     "lint": "npm run lint:src && npm run lint:test",
@@ -50,7 +54,7 @@
   },
   "jest": {
     "globals": {
-      "__TS_CONFIG__": "tsconfig.json"
+      "ts-jest.tsConfig": "tsconfig.json"
     },
     "moduleFileExtensions": [
       "ts",
