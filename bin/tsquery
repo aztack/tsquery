@@ -28,7 +28,6 @@ if (process.argv.indexOf('--list-file') > 0) {
 
 process.stdout.write("{\n")
 process.stdout.write(`  query: "${query}",\n`)
-process.stdout.write(`  script: "${callback}",\n`)
 process.stdout.write(`  result: [`)
 matched.forEach((file, idx) => {
   if (fs.statSync(file).isDirectory()) return;
@@ -37,8 +36,10 @@ matched.forEach((file, idx) => {
   const ast = tsquery.ast(content);
   const nodes = tsquery(ast, query);
   const json = {file, basename, count: nodes.length, result: null};
-  json.result = nodes.map((node) => callback(node, file, basename, idx, nodes))
-    .filter(x => x !== false);
+  json.result = nodes.map((node) => callback.fn(
+    node, file, basename, 
+    {matched, index:idx}, {ast, tsquery, code: content})
+  ).filter(x => x !== false);
   if (!json.result.length) return;
   if (!first) process.stdout.write(",");
   if (first) first = false;
@@ -51,30 +52,36 @@ matched.forEach((file, idx) => {
   count++;
 });
 process.stdout.write(`],\n`)
-process.stdout.write(`  count: ${count}\n`)
+process.stdout.write(`  count: ${count}\n`,)
+process.stdout.write(`  script: "${callback.type}",\n`)
 process.stdout.write(`}`)
 
 function createNodeProcessor(callback) {
+  const ret = {type: '', fn: null};
   if (callback && callback.endsWith('.js') && fs.existsSync(callback)) {
     const p = path.resolve(process.cwd(), callback);
     callback = require(p);
   }
 
-  const params = ['$','$filepath', '$filename', 'index', 'nodes'];
+  const params = ['$','$filepath', '$filename', '$files', '$tsq'];
   if (callback) {
     if (typeof callback === 'function') {
-      return function () {
+       ret.fn = function () {
         try {
           
           return callback(...arguments);
         } catch (e) {}
       }
+      ret.type = 'script';
     } else {
-      return new Function(...params, callback); 
+      ret.fn = new Function(...params, callback); 
+      ret.type = 'inline';
     }
   } else {
-    return new Function(...params, `return $`); 
+    ret.fn = new Function(...params, `return $`); 
+    ret.type = 'default';
   }
+  return ret;
 }
 
 function printUsage() {

@@ -31,7 +31,6 @@ export function projectFiles(configFilePath: string): Array<string> {
 function findConfig(configFilePath: string): string | null {
     try {
         const fullPath = path.resolve(process.cwd(), configFilePath);
-        console.log(fullPath);
         // Throws if file does not exist:
         const stats = fs.statSync(fullPath);
         if (!stats.isDirectory()) {

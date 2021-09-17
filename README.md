@@ -42,14 +42,64 @@ class Snake extends Animal {
     }
 }
 
-`;
+`
 
 const ast = tsquery.ast(typescript);
 const nodes = tsquery(ast, 'Identifier[name="Animal"]');
 console.log(nodes.length); // 2
 ```
 
-[Try running this code in StackBlitz](https://stackblitz.com/edit/tsquery-examples)!
+## CLI
+```
+# Usage:
+$ tsquery <glob-pattern> <ts-query-string> [inline-script | js-file-path]
+```
+
+```ts
+// ./src/a.ts
+class ClassA {}
+
+// ./src/b.ts
+class ClassB {}
+
+// ./process.tsq.js
+module.exprots = function ($, $filepath, $filename, $files, $tsq) {
+    // matched: files matched with glob-pattern
+    // index: current file index
+    // $files = {matched, index}
+    
+    // ast: ast of current ts code
+    // tsquery: the tsquery instance
+    // code: code string read file current file
+    // $tsq = {ast, tsquery, code}
+    return $.name.escapedText;
+}
+```
+
+```bash
+$ tsquery "./src/*.ts" "ClassDeclaration" "return $.name.escapedText"
+# or
+$ tsquery "./src/*.ts" "ClassDeclaration" "./process.tsq.js"
+```
+will output
+```json
+{
+  query: "ClassDeclaration",
+  result: [{
+    file: './a.ts',
+    basename: 'a',
+    count: 1,
+    result: [ 'ClassA' ]
+  },{
+    file: './b.ts',
+    basename: 'b',
+    count: 1,
+    result: [ 'ClassB' ]
+  }],
+  count: 2
+  script: "inline",
+}
+```
 
 ### Selectors
 
