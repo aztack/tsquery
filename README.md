@@ -1,19 +1,13 @@
 # TSQuery
 
-[![npm version](https://img.shields.io/npm/v/@aztack/tsquery.svg)](https://img.shields.io/npm/v/@aztack/tsquery.svg)
-[![Code Climate](https://codeclimate.com/github/aztack/tsquery/badges/gpa.svg)](https://codeclimate.com/github/aztack/tsquery)
-[![Test Coverage](https://codeclimate.com/github/aztack/tsquery/coverage.svg)](https://codeclimate.com/github/aztack/tsquery/coverage)
-
 TSQuery is a port of the ESQuery API for TypeScript! TSQuery allows you to query a TypeScript AST for patterns of syntax using a CSS style selector system. 
-
-[Check out the ESQuery demo](https://estools.github.io/esquery/) - note that the demo requires JavaScript code, not TypeScript
-
-[You can also check out the TSQuery Playground](https://tsquery-playground.firebaseapp.com) - Lovingly crafted by [Uri Shaked]( https://github.com/urish)
 
 ## Installation
 
 ```sh
 npm install @aztack/tsquery --save-dev
+# or install tsquery cli to global
+npm install -g @aztack/tsquery
 ```
 
 ## Examples
@@ -82,7 +76,8 @@ $ tsquery "./src/*.ts" "ClassDeclaration" "return $.name.escapedText"
 $ tsquery "./src/*.ts" "ClassDeclaration" "./process.tsq.js"
 ```
 will output
-```json
+
+```js
 {
   query: "ClassDeclaration",
   result: [{
