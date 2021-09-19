@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const ChmodWebpackPlugin = require("chmod-webpack-plugin");
 module.exports = {
   mode: 'production',
-  entry: './src/cli.ts',
+  entry: './cli.js',
   target: 'node',
   output: {
     path: path.resolve(__dirname, 'bin'),
@@ -11,8 +11,8 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.ts$/,
-      use: 'ts-loader'
+      test: /\.js$/,
+      use: 'babel-loader'
     }]
   },
   plugins: [new webpack.BannerPlugin({

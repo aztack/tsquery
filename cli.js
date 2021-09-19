@@ -1,10 +1,9 @@
-// @ts-nocheck
 const fs = require('fs');
 const path = require('path');
 const { Console } = require('console');
 const { Transform } = require('stream');
 
-const tsquery = require('../dist/src/index').tsquery;
+const tsquery = require('./dist/src/index').tsquery;
 const glob = require('glob');
 
 const pattern = process.argv[2];
