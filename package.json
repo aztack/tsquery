@@ -1,6 +1,6 @@
 {
   "name": "@aztack/tsquery",
-  "version": "4.1.5",
+  "version": "4.1.6",
   "description": "Query TypeScript ASTs with the esquery API!",
   "bin": {
     "tsquery": "./bin/tsquery"

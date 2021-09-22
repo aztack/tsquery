@@ -65,7 +65,8 @@ module.exprots = function ($, $filepath, $filename, $files, $tsq) {
     // ast: ast of current ts code
     // tsquery: the tsquery instance
     // code: code string read file current file
-    // $tsq = {ast, tsquery, code}
+    // ts: the typescript library
+    // $tsq = {ast, tsquery, code, ts}
     return $.name.escapedText;
 }
 ```
