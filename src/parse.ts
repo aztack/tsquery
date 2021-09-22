@@ -1,5 +1,6 @@
 // Dependencies:
 import * as esquery from 'esquery';
+const esquery = require('esquery').default;
 import { SyntaxKind } from 'typescript';
 import { TSQuerySelectorNode } from './tsquery-types';
 
